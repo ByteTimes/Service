@@ -178,7 +178,7 @@ services:
       - REDIS_1_HOST=redis
       - REDIS_1_PORT=6379
       - TZ=$TZ
-      
+
 
 networks:
   virnet:
