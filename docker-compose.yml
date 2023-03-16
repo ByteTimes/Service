@@ -25,6 +25,15 @@ services:
     networks:
       virnet:
         ipv4_address: 10.10.8.2
+    deploy:
+      resources:
+        limits:
+#          cpus: '0.50'
+          memory: 8192M
+#          pids: 1
+        reservations:
+#          cpus: '0.25'
+          memory: 4096M
         
 #  openresty:
 #    image:  openresty/openresty:${OPENRESTY_VERSION}
@@ -69,6 +78,15 @@ services:
     networks:
       virnet:
         ipv4_address: 10.10.8.3
+    deploy:
+      resources:
+        limits:
+#          cpus: '0.50'
+          memory: 8192M
+#          pids: 1
+        reservations:
+#          cpus: '0.25'
+          memory: 4096M
 
 #  php80:
 #    build:
@@ -113,6 +131,15 @@ services:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       MYSQL_ROOT_HOST: "${MYSQL_ROOT_HOST}"
       TZ: "$TZ"
+    deploy:
+      resources:
+        limits:
+#          cpus: '0.50'
+          memory: 8192M
+#          pids: 1
+        reservations:
+#          cpus: '0.25'
+          memory: 4096M
 
 #  mysql5:
 #    image: mysql/mysql-server:${MYSQL5_VERSION}
@@ -137,8 +164,8 @@ services:
   redis:
     image: redis:${REDIS_VERSION}
     container_name: redis
-    ports:
-      - "${REDIS_HOST_PORT}:6379"
+#    ports:
+#      - "${REDIS_HOST_PORT}:6379"
     volumes:
       - ${REDIS_CONF_FILE}:/etc/redis.conf:ro
       - ${DATA_DIR}/redis:/data/:rw
@@ -149,6 +176,15 @@ services:
     networks:
       virnet:
         ipv4_address: 10.10.8.5
+    deploy:
+      resources:
+        limits:
+#          cpus: '0.50'
+          memory: 8192M
+#          pids: 1
+        reservations:
+#          cpus: '0.25'
+          memory: 4096M
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -177,8 +213,24 @@ services:
     environment:
       - REDIS_1_HOST=redis
       - REDIS_1_PORT=6379
+      - REDIS_1_AUTH=123456
       - TZ=$TZ
 
+  lookbusy:
+    build:
+      context: ./services/lookbusy
+    container_name: lookbusy
+    hostname: lookbusy
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - CPU_UTIL=10-20
+      - CPU_CORE=4
+      - MEM_UTIL=15
+      - SPEEDTEST_INTERVAL=120
+    networks:
+      virnet:
+        ipv4_address: 10.10.8.10
 
 networks:
   virnet:
