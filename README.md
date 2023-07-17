@@ -3,7 +3,7 @@ DNMP（Docker + Nginx/Openresty + MySQL5,8 + PHP5,7,8 + Redis + ElasticSearch + 
 > 使用前最好提前阅读一遍[目录](#目录)，以便快速上手，遇到问题也能及时排除。
 
 **[[ENGLISH]](README-en.md)** -
-[**[GitHub地址]**](https://github.com/LifeFiles/DNMP) 
+[**[GitHub地址]**](https://github.com/ByteTimes/Service) 
 
 DNMP项目特点：
 1. `100%`开源
@@ -84,7 +84,7 @@ DNMP项目特点：
 2. `clone`项目：
     ```
     
-    $ git clone https://github.com/LifeFiles/DNMP.git
+    $ git clone https://github.com/ByteTimes/Service.git
     
     ```
 3. 如果主机是 Linux系统，且当前用户不是`root`用户，还需将当前用户加入`docker`用户组：
